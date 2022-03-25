@@ -15,4 +15,6 @@
     <string name="contacts">Contacts</string>
     <string name="focus">Focus</string>
     <string name="to_do">To-Do</string>
+    <string name="daily_diary">Daily Diary</string>
+    <string name="your_productivity_companion">Your productivity companion</string>
 </resources>
