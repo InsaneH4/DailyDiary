@@ -21,4 +21,7 @@
     <string name="add_something">Add something</string>
     <string name="add">Add an item</string>
     <string name="appName">Daily Diary</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_event">Add event</string>
 </resources>
