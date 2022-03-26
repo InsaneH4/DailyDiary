@@ -17,4 +17,8 @@
     <string name="to_do">To-Do</string>
     <string name="daily_diary">Daily Diary</string>
     <string name="your_productivity_companion">Your productivity companion</string>
+    <string name="todo">TODO</string>
+    <string name="add_something">Add something</string>
+    <string name="add">Add an item</string>
+    <string name="appName">Daily Diary</string>
 </resources>

@@ -1,13 +1,13 @@
-package com.example.dailydiary.ui.home
+package com.example.dailydiary.ui.contacts
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class ContactsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "This is the contacts fragment"
     }
     val text: LiveData<String> = _text
 }

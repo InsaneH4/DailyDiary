@@ -1,4 +1,4 @@
-package com.example.dailydiary.ui.slideshow
+package com.example.dailydiary.ui.reminders
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.dailydiary.databinding.FragmentSlideshowBinding
+import com.example.dailydiary.databinding.FragmentCalendarBinding
 
-class SlideshowFragment : Fragment() {
+class RemindersFragment : Fragment() {
 
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentCalendarBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,14 +22,14 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(SlideshowViewModel::class.java)
+        val galleryViewModel =
+            ViewModelProvider(this)[RemindersViewModel::class.java]
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentCalendarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
+        val textView: TextView = binding.textHome
+        galleryViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
         return root

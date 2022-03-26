@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.dailydiary.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.example.dailydiary.ui.calendar.CalendarFragment"
+        android:label="Calendar"
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.dailydiary.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.example.dailydiary.ui.reminders.RemindersFragment"
+        android:label="Reminders"
+        tools:layout="@layout/fragment_reminders" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.dailydiary.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.example.dailydiary.ui.contacts.ContactsFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_contacts" />
 </navigation>

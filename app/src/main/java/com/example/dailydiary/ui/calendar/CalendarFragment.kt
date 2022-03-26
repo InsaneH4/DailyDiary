@@ -1,4 +1,4 @@
-package com.example.dailydiary.ui.home
+package com.example.dailydiary.ui.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.dailydiary.databinding.FragmentHomeBinding
+import com.example.dailydiary.databinding.FragmentRemindersBinding
 
-class HomeFragment : Fragment() {
+class CalendarFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentRemindersBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,12 +23,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this)[CalendarViewModel::class.java]
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentRemindersBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textGallery
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
