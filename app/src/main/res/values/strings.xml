@@ -17,4 +17,6 @@
     <string name="appName">Daily Diary</string>
     <string name="add_event">Add event</string>
     <string name="tasks">Tasks</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

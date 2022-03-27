@@ -14,4 +14,9 @@
         android:name="com.example.dailydiary.TasksFragment"
         android:label="Tasks"
         tools:layout="@layout/fragment_tasks" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.dailydiary.ContactsFragment"
+        android:label="Contacts"
+        tools:layout="@layout/fragment_contacts" />
 </navigation>

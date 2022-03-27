@@ -6,15 +6,15 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_cal"
+            android:id="@+id/calFragment"
             android:icon="@drawable/calendar_icon"
             android:title="@string/calendar" />
         <item
-            android:id="@+id/nav_remind"
-            android:icon="@drawable/reminder_icon"
+            android:id="@+id/tasksFragment"
+            android:icon="@drawable/tasks_icon"
             android:title="@string/tasks" />
         <item
-            android:id="@+id/nav_con"
+            android:id="@+id/contactsFragment"
             android:icon="@drawable/contacts_icon"
             android:title="@string/contacts" />
         <item
