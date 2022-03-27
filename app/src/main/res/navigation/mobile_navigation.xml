@@ -9,4 +9,9 @@
         android:name="com.example.dailydiary.CalFragment"
         android:label="Calendar"
         tools:layout="@layout/fragment_cal" />
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.dailydiary.TasksFragment"
+        android:label="Tasks"
+        tools:layout="@layout/fragment_tasks" />
 </navigation>

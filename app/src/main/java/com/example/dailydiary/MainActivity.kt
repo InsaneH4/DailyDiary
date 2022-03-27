@@ -2,7 +2,6 @@ package com.example.dailydiary
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -32,9 +31,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.calFragment/*, R.id.nav_cal, R.id.nav_slideshow*/
-            ), drawerLayout
+            setOf(R.id.calFragment, R.id.tasksFragment), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
@@ -49,9 +46,5 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    fun fabAction(view: View) {
-        print("Hi there mister")
     }
 }

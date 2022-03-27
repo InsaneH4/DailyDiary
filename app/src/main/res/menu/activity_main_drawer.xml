@@ -12,7 +12,7 @@
         <item
             android:id="@+id/nav_remind"
             android:icon="@drawable/reminder_icon"
-            android:title="@string/to_do" />
+            android:title="@string/tasks" />
         <item
             android:id="@+id/nav_con"
             android:icon="@drawable/contacts_icon"
