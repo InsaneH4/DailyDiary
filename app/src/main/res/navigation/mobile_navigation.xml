@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/homeFragment">
+    app:startDestination="@id/calFragment">
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.dailydiary.HomeFragment"
+        android:id="@+id/calFragment"
+        android:name="com.example.dailydiary.CalFragment"
         android:label="Calendar"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_cal" />
 </navigation>
