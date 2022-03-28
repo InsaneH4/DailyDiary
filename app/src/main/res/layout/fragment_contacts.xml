@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/primary_color"
         android:clickable="true"
         android:contentDescription="@string/add_event"
         android:focusable="true"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/add_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
