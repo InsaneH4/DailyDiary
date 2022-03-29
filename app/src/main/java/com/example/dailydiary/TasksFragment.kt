@@ -34,8 +34,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         fab?.setOnClickListener {
             val alertDialog = AlertDialog.Builder(this.context)
             val textEdit = EditText(this.context)
-            alertDialog.setMessage("Add a task")
-            alertDialog.setTitle("Enter a task")
+            alertDialog.setTitle("Add a task")
             alertDialog.setView(textEdit)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
                 val todoItemData = ToDoModel.createList()
@@ -45,7 +44,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
-                Toast.makeText(this.context, "Item saved", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Task saved", Toast.LENGTH_LONG).show()
             }
             alertDialog.show()
         }
