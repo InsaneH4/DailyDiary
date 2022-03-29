@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "598747317961",
+    "firebase_url": "https://dailydiary-cd483-default-rtdb.firebaseio.com",
+    "project_id": "dailydiary-cd483",
+    "storage_bucket": "dailydiary-cd483.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598747317961:android:fc475460d5db5476922f18",
+        "android_client_info": {
+          "package_name": "com.example.dailydiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598747317961-ldltj5negropqk7r4c6sqtmqom5ts8s7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHvcSbI4odYHHgQZrWCiXuBSRjC5tf-Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598747317961-ldltj5negropqk7r4c6sqtmqom5ts8s7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

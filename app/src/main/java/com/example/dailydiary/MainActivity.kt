@@ -12,8 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dailydiary.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.database.FirebaseDatabase
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UpdateAndDelete {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,5 +47,17 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun modifyItem(itemId: String?, isDone: Boolean?) {
+        val database = FirebaseDatabase.getInstance().reference
+        val itemReference = database.child("todo").child(itemId!!)
+        itemReference.child("done").setValue(isDone)
+    }
+
+    override fun onItemDelete(itemId: String?) {
+        val database = FirebaseDatabase.getInstance().reference
+        val itemReference = database.child("todo").child(itemId!!)
+        itemReference.removeValue()
     }
 }

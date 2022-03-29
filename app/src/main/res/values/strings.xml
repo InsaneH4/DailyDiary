@@ -22,4 +22,7 @@
     <string name="add_task">Add Task</string>
     <string name="new_task">New Task</string>
     <string name="app_icon">App icon</string>
+    <string name="add_a_task">Add a task</string>
+    <string name="this_is_a_test_lol">This is a test lol</string>
+    <string name="delete_a_task">Delete a task</string>
 </resources>
