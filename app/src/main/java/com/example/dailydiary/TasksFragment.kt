@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import java.util.*
 
-
+//TODO: Add task editing feature
 class TasksFragment : Fragment(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
     private var toDoList: LinkedList<ToDoModel>? = null
@@ -43,7 +43,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             nameField.setSingleLine()
             dueField.setSingleLine()
             nameField.hint = "Name"
-            dueField.hint = "Due by"
+            dueField.hint = "Due date"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
             layout.addView(dueField)

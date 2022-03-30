@@ -26,5 +26,5 @@
     <string name="this_is_a_test_lol">This is a test lol</string>
     <string name="delete_a_task">Delete a task</string>
     <string name="example_lol">example lol</string>
-    <string name="due_by">Due by:</string>
+    <string name="due_date">Due date:</string>
 </resources>

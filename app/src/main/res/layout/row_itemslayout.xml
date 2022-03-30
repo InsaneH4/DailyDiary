@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTextView"
         android:layout_toEndOf="@+id/taskCheckbox"
-        android:text="@string/due_by"
+        android:text="@string/due_date"
         android:textColor="@color/white"
         android:textSize="18sp"
         tools:ignore="RelativeOverlap" />
