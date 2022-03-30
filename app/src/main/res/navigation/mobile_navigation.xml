@@ -3,12 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/calFragment">
-    <fragment
-        android:id="@+id/calFragment"
-        android:name="com.example.dailydiary.CalFragment"
-        android:label="Calendar"
-        tools:layout="@layout/fragment_cal" />
+    app:startDestination="@id/tasksFragment">
     <fragment
         android:id="@+id/tasksFragment"
         android:name="com.example.dailydiary.TasksFragment"

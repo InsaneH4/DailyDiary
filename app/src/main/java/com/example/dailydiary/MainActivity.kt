@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.calFragment, R.id.tasksFragment, R.id.contactsFragment), drawerLayout
+            setOf(R.id.tasksFragment, R.id.contactsFragment), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)

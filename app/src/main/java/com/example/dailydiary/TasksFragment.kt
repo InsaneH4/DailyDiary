@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import java.util.*
 
-//TODO: Add task editing feature
+//TODO: Add task editing feature, start/end date feature
 class TasksFragment : Fragment(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
     private var toDoList: LinkedList<ToDoModel>? = null
