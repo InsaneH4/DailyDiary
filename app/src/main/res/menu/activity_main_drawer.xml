@@ -12,9 +12,5 @@
             android:id="@+id/contactsFragment"
             android:icon="@drawable/contacts_icon"
             android:title="@string/contacts" />
-        <item
-            android:id="@+id/nav_focus"
-            android:icon="@drawable/focus_icon"
-            android:title="@string/focus" />
     </group>
 </menu>
