@@ -12,18 +12,30 @@
         android:id="@+id/taskCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:buttonTint="@color/white" />
 
     <TextView
         android:id="@+id/itemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+
         android:layout_toEndOf="@+id/taskCheckbox"
-        android:text="@string/example_lol"
+        android:text="@string/new_task"
         android:textColor="@color/white"
         android:textSize="26sp"
         android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
+
+    <TextView
+        android:id="@+id/dueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemTextView"
+        android:layout_toEndOf="@+id/taskCheckbox"
+        android:text="@string/due_by"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         tools:ignore="RelativeOverlap" />
 
     <ImageButton

@@ -19,11 +19,12 @@
     <string name="tasks">Tasks</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_task">Add Task</string>
-    <string name="new_task">New Task</string>
+    <string name="add_task">Add task</string>
+    <string name="new_task">New task</string>
     <string name="app_icon">App icon</string>
     <string name="add_a_task">Add a task</string>
     <string name="this_is_a_test_lol">This is a test lol</string>
     <string name="delete_a_task">Delete a task</string>
     <string name="example_lol">example lol</string>
+    <string name="due_by">Due by:</string>
 </resources>

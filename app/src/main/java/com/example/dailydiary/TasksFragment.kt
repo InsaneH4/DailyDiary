@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import java.util.*
-import kotlin.collections.HashMap
+
 
 class TasksFragment : Fragment(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
@@ -34,18 +35,30 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         listViewItem = view.findViewById(R.id.taskListView)!!
         database = FirebaseDatabase.getInstance().reference
         fab?.setOnClickListener {
+            val layout = LinearLayout(this.context)
+            layout.orientation = LinearLayout.VERTICAL
             val alertDialog = AlertDialog.Builder(this.context)
-            val textField = EditText(this.context)
-            textField.setSingleLine()
-            textField.hint = "New task"
+            val nameField = EditText(this.context)
+            val dueField = EditText(this.context)
+            nameField.setSingleLine()
+            dueField.setSingleLine()
+            nameField.hint = "Name"
+            dueField.hint = "Due by"
             alertDialog.setTitle("Add a task")
-            alertDialog.setView(textField)
+            layout.addView(nameField)
+            layout.addView(dueField)
+            alertDialog.setView(layout)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
                 val todoItemData = ToDoModel.createList()
-                if (textField.text.isEmpty()) {
+                if (nameField.text.isEmpty()) {
                     todoItemData.taskName = "New task"
                 } else {
-                    todoItemData.taskName = textField.text.toString()
+                    todoItemData.taskName = nameField.text.toString()
+                }
+                if (dueField.text.isEmpty()) {
+                    todoItemData.dueDate = "No due date"
+                } else {
+                    todoItemData.dueDate = dueField.text.toString()
                 }
                 todoItemData.done = false
                 val newItemData = database.child("todo").push()
@@ -86,6 +99,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 toDoItemData.id = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?
                 toDoItemData.taskName = map["taskName"] as String?
+                toDoItemData.dueDate = map["dueDate"] as String?
                 toDoList!!.add(toDoItemData)
             }
         }
