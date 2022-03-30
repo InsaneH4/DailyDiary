@@ -10,6 +10,7 @@
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/drawable/ic_launcher_background.xml" value="0.144" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/drawable/ic_menu_camera.xml" value="0.2895" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/drawable/side_nav_bar.xml" value="0.2805" />
+        <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/drawable/tasks_icon.xml" value="0.2805" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/activity_splash.xml" value="0.3625" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/app_bar_main.xml" value="0.25" />
@@ -21,6 +22,7 @@
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_home.xml" value="0.2767210144927536" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_reminder.xml" value="0.29743589743589743" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_reminders.xml" value="0.23324275362318841" />
+        <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_settings.xml" value="0.3625" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_slideshow.xml" value="0.2767210144927536" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_tasks.xml" value="0.25" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/fragment_todo.xml" value="0.29743589743589743" />
@@ -30,8 +32,10 @@
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/layout/task_layout.xml" value="0.3625" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/menu/activity_main_drawer.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/menu/main.xml" value="0.29743589743589743" />
+        <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/menu/nav_menu.xml" value="0.3625" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2805" />
         <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2805" />
+        <entry key="..\:/Users/samue/AndroidStudioProjects/DailyDiary/app/src/main/res/xml/root_preferences.xml" value="0.18541666666666667" />
       </map>
     </option>
   </component>
