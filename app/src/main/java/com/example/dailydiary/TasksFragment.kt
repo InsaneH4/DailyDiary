@@ -33,18 +33,27 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         database = FirebaseDatabase.getInstance().reference
         fab?.setOnClickListener {
             val alertDialog = AlertDialog.Builder(this.context)
-            val textEdit = EditText(this.context)
+            val textField = EditText(this.context)
+            textField.setSingleLine()
+            textField.hint = "New task"
             alertDialog.setTitle("Add a task")
-            alertDialog.setView(textEdit)
+            alertDialog.setView(textField)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
                 val todoItemData = ToDoModel.createList()
-                todoItemData.taskName = textEdit.text.toString()
+                if (textField.text.isEmpty()) {
+                    todoItemData.taskName = "New task"
+                } else {
+                    todoItemData.taskName = textField.text.toString()
+                }
                 todoItemData.done = false
                 val newItemData = database.child("todo").push()
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
                 Toast.makeText(this.context, "Task saved", Toast.LENGTH_LONG).show()
+            }
+            alertDialog.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
             }
             alertDialog.show()
         }
