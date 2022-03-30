@@ -11,10 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
+import java.util.*
+import kotlin.collections.HashMap
 
 class TasksFragment : Fragment(), UpdateAndDelete {
     private lateinit var database: DatabaseReference
-    private var toDoList: MutableList<ToDoModel>? = null
+    private var toDoList: LinkedList<ToDoModel>? = null
     private lateinit var adapter: ToDoAdapter
     private lateinit var listViewItem: ListView
 
@@ -57,7 +59,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             }
             alertDialog.show()
         }
-        toDoList = mutableListOf()
+        toDoList = LinkedList()
         adapter = ToDoAdapter(context, toDoList!!)
         listViewItem.adapter = adapter
         database.addValueEventListener(object : ValueEventListener {

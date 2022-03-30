@@ -8,8 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
+import java.util.*
 
-class ToDoAdapter(context: Context?, toDoList: MutableList<ToDoModel>) : BaseAdapter() {
+class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdapter() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var itemList = toDoList
     private var updateAndDelete : UpdateAndDelete = context as UpdateAndDelete
