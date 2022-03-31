@@ -1,6 +1,7 @@
 package com.example.dailydiary
 
 import android.app.AlertDialog
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,22 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
-//TODO: Add task editing feature, start/end date feature
+//TODO: Add task editing feature
 class TasksFragment : Fragment(), UpdateAndDelete {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val date = LocalDateTime.now().format(dateFormatter)
+    private lateinit var toDoList: LinkedList<ToDoModel>
     private lateinit var quesadilla: DatabaseReference
-    private var toDoList: LinkedList<ToDoModel>? = null
     private lateinit var adapter: ToDoAdapter
     private lateinit var listViewItem: ListView
 
@@ -29,6 +37,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         return inflater.inflate(R.layout.fragment_tasks, container, false)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val fab = view.findViewById<FloatingActionButton>(R.id.taskFab)
@@ -39,13 +48,17 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             layout.orientation = LinearLayout.VERTICAL
             val alertDialog = AlertDialog.Builder(this.context)
             val nameField = EditText(this.context)
+            val startField = EditText(this.context)
             val dueField = EditText(this.context)
             nameField.setSingleLine()
+            startField.setSingleLine()
             dueField.setSingleLine()
             nameField.hint = "Name"
+            startField.hint = "Start date"
             dueField.hint = "Due date"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
+            layout.addView(startField)
             layout.addView(dueField)
             alertDialog.setView(layout)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
@@ -55,13 +68,18 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 } else {
                     todoItemData.taskName = nameField.text.toString()
                 }
+                if (startField.text.isEmpty()) {
+                    todoItemData.startDate = "Start date: $date"
+                } else {
+                    todoItemData.startDate = "Start date: " + startField.text.toString()
+                }
                 if (dueField.text.isEmpty()) {
                     todoItemData.dueDate = "No due date"
                 } else {
-                    todoItemData.dueDate = dueField.text.toString()
+                    todoItemData.dueDate = "Due date: " + dueField.text.toString()
                 }
                 todoItemData.done = false
-                val newItemData = quesadilla.child("todo").push()
+                val newItemData = quesadilla.child("tasks").push()
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
@@ -73,11 +91,11 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             alertDialog.show()
         }
         toDoList = LinkedList()
-        adapter = ToDoAdapter(context, toDoList!!)
+        adapter = ToDoAdapter(context, toDoList)
         listViewItem.adapter = adapter
         quesadilla.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                toDoList!!.clear()
+                toDoList.clear()
                 addItemToList(snapshot)
             }
 
@@ -99,8 +117,9 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 toDoItemData.id = currentItem.key
                 toDoItemData.done = map["done"] as Boolean?
                 toDoItemData.taskName = map["taskName"] as String?
+                toDoItemData.startDate = map["startDate"] as String?
                 toDoItemData.dueDate = map["dueDate"] as String?
-                toDoList!!.add(toDoItemData)
+                toDoList.add(toDoItemData)
             }
         }
         adapter.notifyDataSetChanged()

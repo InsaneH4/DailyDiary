@@ -28,10 +28,20 @@
         tools:ignore="RelativeOverlap" />
 
     <TextView
-        android:id="@+id/dueTextView"
+        android:id="@+id/startTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/itemTextView"
+        android:layout_toEndOf="@+id/taskCheckbox"
+        android:text="@string/start_date"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:ignore="RelativeOverlap" />
+    <TextView
+        android:id="@+id/dueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startTextView"
         android:layout_toEndOf="@+id/taskCheckbox"
         android:text="@string/due_date"
         android:textColor="@color/white"
@@ -42,11 +52,23 @@
         android:id="@+id/taskClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/itemTextView"
+        android:layout_alignTop="@+id/itemTextView"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
         android:background="@android:color/transparent"
         android:contentDescription="@string/delete_a_task"
-        android:gravity="end"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:src="@drawable/cancel_icon" />
+
+    <ImageButton
+        android:id="@+id/taskEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/taskClose"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/edit_a_task"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/edit_icon" />
 </RelativeLayout>

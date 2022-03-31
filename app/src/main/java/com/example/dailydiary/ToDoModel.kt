@@ -7,6 +7,7 @@ class ToDoModel {
 
     var id: String? = null
     var taskName: String? = null
+    var startDate: String? = null
     var dueDate: String? = null
     var done: Boolean? = false
 }

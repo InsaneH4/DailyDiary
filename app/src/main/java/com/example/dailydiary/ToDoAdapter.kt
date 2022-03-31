@@ -29,6 +29,7 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val id: String? = itemList[p0].id
         val taskName: String? = itemList[p0].taskName
+        val startDate: String? = itemList[p0].startDate
         val dueDate: String? = itemList[p0].dueDate
         val done: Boolean? = itemList[p0].done
         val view: View
@@ -42,6 +43,7 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
             viewHolder = view.tag as ListViewHolder
         }
         viewHolder.textLabel.text = taskName
+        viewHolder.startLabel.text = startDate
         viewHolder.dueLabel.text = dueDate
         if (done != null) {
             viewHolder.isDone.isChecked = done
@@ -57,6 +59,7 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
 
     private class ListViewHolder(row: View?) {
         val textLabel: TextView = row!!.findViewById(R.id.itemTextView)
+        val startLabel : TextView = row!!.findViewById(R.id.startTextView)
         val dueLabel: TextView = row!!.findViewById(R.id.dueTextView)
         val isDone: CheckBox = row!!.findViewById(R.id.taskCheckbox)
         val isDeleted: ImageButton = row!!.findViewById(R.id.taskClose)

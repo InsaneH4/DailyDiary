@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
         val quesadilla = FirebaseDatabase.getInstance().reference
-        val itemReference = quesadilla.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
     override fun onItemDelete(itemId: String?) {
         val quesadilla = FirebaseDatabase.getInstance().reference
-        val itemReference = quesadilla.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.removeValue()
     }
 }
