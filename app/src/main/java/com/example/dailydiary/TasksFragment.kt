@@ -22,8 +22,12 @@ import java.time.format.DateTimeFormatter
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val date = LocalDateTime.now().format(dateFormatter)
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val tomorrow = LocalDateTime.now().plusDays(1).format(dateFormatter)
     private lateinit var toDoList: LinkedList<ToDoModel>
     private lateinit var quesadilla: DatabaseReference
     private lateinit var adapter: ToDoAdapter
@@ -54,7 +58,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             startField.setSingleLine()
             dueField.setSingleLine()
             nameField.hint = "Name"
-            startField.hint = "Start date"
+            startField.hint = "Start date (optional)"
             dueField.hint = "Due date"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
@@ -68,15 +72,34 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 } else {
                     todoItemData.taskName = nameField.text.toString()
                 }
-                if (startField.text.isEmpty()) {
-                    todoItemData.startDate = "Start date: $date"
-                } else {
-                    todoItemData.startDate = "Start date: " + startField.text.toString()
+                when {
+                    startField.text.isEmpty() -> {
+                        todoItemData.startDate = "No start date"
+                    }
+                    startField.text.toString().equals("today", ignoreCase = true) -> {
+                        todoItemData.startDate = "Start date: $date"
+                    }
+                    startField.text.toString().equals("tomorrow", ignoreCase = true) -> {
+                        todoItemData.startDate = "Start date: $tomorrow"
+                    }
+                    else -> {
+                        todoItemData.startDate = "Start date: " + startField.text.toString()
+                    }
                 }
-                if (dueField.text.isEmpty()) {
-                    todoItemData.dueDate = "No due date"
-                } else {
-                    todoItemData.dueDate = "Due date: " + dueField.text.toString()
+                when {
+                    dueField.text.isEmpty() -> {
+                        todoItemData.dueDate = "No due date"
+                    }
+                    dueField.text.toString().equals("today", ignoreCase = true) -> {
+                        todoItemData.dueDate = "Due date: $date"
+                    }
+                    dueField.text.toString().equals("tomorrow", ignoreCase = true) -> {
+                        todoItemData.dueDate =
+                            "Due date: $tomorrow"
+                    }
+                    else -> {
+                        todoItemData.dueDate = "Due date: " + dueField.text.toString()
+                    }
                 }
                 todoItemData.done = false
                 val newItemData = quesadilla.child("tasks").push()
