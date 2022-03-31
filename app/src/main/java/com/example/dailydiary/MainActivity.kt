@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
-        val database = FirebaseDatabase.getInstance().reference
-        val itemReference = database.child("todo").child(itemId!!)
+        val quesadilla = FirebaseDatabase.getInstance().reference
+        val itemReference = quesadilla.child("todo").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
     override fun onItemDelete(itemId: String?) {
-        val database = FirebaseDatabase.getInstance().reference
-        val itemReference = database.child("todo").child(itemId!!)
+        val quesadilla = FirebaseDatabase.getInstance().reference
+        val itemReference = quesadilla.child("todo").child(itemId!!)
         itemReference.removeValue()
     }
 }

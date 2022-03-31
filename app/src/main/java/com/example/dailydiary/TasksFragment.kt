@@ -16,7 +16,7 @@ import java.util.*
 
 //TODO: Add task editing feature, start/end date feature
 class TasksFragment : Fragment(), UpdateAndDelete {
-    private lateinit var database: DatabaseReference
+    private lateinit var quesadilla: DatabaseReference
     private var toDoList: LinkedList<ToDoModel>? = null
     private lateinit var adapter: ToDoAdapter
     private lateinit var listViewItem: ListView
@@ -33,7 +33,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         super.onViewCreated(view, savedInstanceState)
         val fab = view.findViewById<FloatingActionButton>(R.id.taskFab)
         listViewItem = view.findViewById(R.id.taskListView)!!
-        database = FirebaseDatabase.getInstance().reference
+        quesadilla = FirebaseDatabase.getInstance().reference
         fab?.setOnClickListener {
             val layout = LinearLayout(this.context)
             layout.orientation = LinearLayout.VERTICAL
@@ -61,7 +61,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                     todoItemData.dueDate = dueField.text.toString()
                 }
                 todoItemData.done = false
-                val newItemData = database.child("todo").push()
+                val newItemData = quesadilla.child("todo").push()
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
@@ -75,7 +75,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         toDoList = LinkedList()
         adapter = ToDoAdapter(context, toDoList!!)
         listViewItem.adapter = adapter
-        database.addValueEventListener(object : ValueEventListener {
+        quesadilla.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoList!!.clear()
                 addItemToList(snapshot)
@@ -107,12 +107,12 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     }
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
-        val itemReference = database.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("todo").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
     override fun onItemDelete(itemId: String?) {
-        val itemReference = database.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("todo").child(itemId!!)
         itemReference.removeValue()
         adapter.notifyDataSetChanged()
     }
