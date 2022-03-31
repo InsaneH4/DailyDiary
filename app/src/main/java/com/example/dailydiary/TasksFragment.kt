@@ -58,7 +58,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             startField.setSingleLine()
             dueField.setSingleLine()
             nameField.hint = "Name"
-            startField.hint = "Start date (optional)"
+            startField.hint = "Start date"
             dueField.hint = "Due date"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
