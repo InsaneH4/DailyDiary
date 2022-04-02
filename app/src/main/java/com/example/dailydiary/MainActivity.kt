@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete {
+    private val quesadilla = FirebaseDatabase.getInstance().reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,13 +31,24 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
     }
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
-        val quesadilla = FirebaseDatabase.getInstance().reference
         val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
+    override fun editItem(
+        itemId: String?,
+        isDone: Boolean?,
+        taskName: String?,
+        startDate: String?,
+        dueDate: String?
+    ) {
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
+        itemReference.child("taskName").setValue(taskName)
+        itemReference.child("startDate").setValue(startDate)
+        itemReference.child("dueDate").setValue(dueDate)
+    }
+
     override fun onItemDelete(itemId: String?) {
-        val quesadilla = FirebaseDatabase.getInstance().reference
         val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.removeValue()
     }

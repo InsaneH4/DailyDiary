@@ -14,11 +14,10 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import java.util.*
+import java.util.LinkedList
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-//TODO: Add task editing feature
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
@@ -149,12 +148,25 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     }
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
-        val itemReference = quesadilla.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
+    override fun editItem(
+        itemId: String?,
+        isDone: Boolean?,
+        taskName: String?,
+        startDate: String?,
+        dueDate: String?
+    ) {
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
+        itemReference.child("taskName").setValue(taskName)
+        itemReference.child("startDate").setValue(startDate)
+        itemReference.child("dueDate").setValue(dueDate)
+    }
+
     override fun onItemDelete(itemId: String?) {
-        val itemReference = quesadilla.child("todo").child(itemId!!)
+        val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.removeValue()
         adapter.notifyDataSetChanged()
     }
