@@ -18,6 +18,7 @@ import java.util.LinkedList
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+//TODO: Figure out notifications
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
