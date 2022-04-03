@@ -2,6 +2,7 @@ package com.example.dailydiary
 
 import android.app.AlertDialog
 import android.content.Context
+import android.media.MediaPlayer
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
         var taskName: String? = itemList[p0].taskName
         var startDate: String? = itemList[p0].startDate
         var dueDate: String? = itemList[p0].dueDate
+        var remindTime: String? = itemList[p0].remindTime
         val done: Boolean? = itemList[p0].done
         val view: View
         val viewHolder: ListViewHolder
@@ -57,11 +59,16 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
         viewHolder.textLabel.text = taskName
         viewHolder.startLabel.text = startDate
         viewHolder.dueLabel.text = dueDate
+        viewHolder.remindLabel.text = remindTime
         if (done != null) {
             viewHolder.isDone.isChecked = done
         }
+        val mp = MediaPlayer.create(view.context, R.raw.completion)
         viewHolder.isDone.setOnClickListener {
-            updateAndDelete.modifyItem(id, !done!!)
+            if (!done!!) {
+                mp.start()
+            }
+            updateAndDelete.modifyItem(id, !done)
         }
         viewHolder.isDeleted.setOnClickListener {
             updateAndDelete.onItemDelete(id)
@@ -73,18 +80,22 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
             val nameField = EditText(view.context)
             val startField = EditText(view.context)
             val dueField = EditText(view.context)
+            val remindField = EditText(view.context)
             nameField.setSingleLine()
             startField.setSingleLine()
             dueField.setSingleLine()
+            remindField.setSingleLine()
             nameField.setText(taskName)
             startField.setText(startDate)
             dueField.setText(dueDate)
+            remindField.setText(remindTime)
             alertDialog.setTitle("Edit this task")
             layout.addView(nameField)
             layout.addView(startField)
             layout.addView(dueField)
+            layout.addView(remindField)
             alertDialog.setView(layout)
-            alertDialog.setPositiveButton("Save") { _, _ ->
+            alertDialog.setPositiveButton("Save") { dialog, _ ->
                 taskName = nameField.text.toString()
                 startDate = when {
                     startField.text.toString().equals("today", ignoreCase = true) -> {
@@ -108,7 +119,10 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
                         dueField.text.toString()
                     }
                 }
-                updateAndDelete.editItem(id, done, taskName, startDate, dueDate)
+                remindTime = remindField.text.toString()
+                updateAndDelete.editItem(id, done, taskName, startDate, dueDate, remindTime)
+                dialog.dismiss()
+                Toast.makeText(view.context, "Task saved", Toast.LENGTH_LONG).show()
             }
             alertDialog.setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
@@ -122,6 +136,7 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
         val textLabel: TextView = row!!.findViewById(R.id.itemTextView)
         val startLabel: TextView = row!!.findViewById(R.id.startTextView)
         val dueLabel: TextView = row!!.findViewById(R.id.dueTextView)
+        val remindLabel: TextView = row!!.findViewById(R.id.remindTextView)
         val isDone: CheckBox = row!!.findViewById(R.id.taskCheckbox)
         val editButton: ImageButton = row!!.findViewById(R.id.taskEdit)
         val isDeleted: ImageButton = row!!.findViewById(R.id.taskClose)

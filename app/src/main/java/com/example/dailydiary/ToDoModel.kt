@@ -9,5 +9,6 @@ class ToDoModel {
     var taskName: String? = null
     var startDate: String? = null
     var dueDate: String? = null
+    var remindTime: String? = null
     var done: Boolean? = false
 }

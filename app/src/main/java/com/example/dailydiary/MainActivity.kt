@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
             when (it.itemId) {
                 R.id.tasks_item -> makeCurrentFragment(TasksFragment())
                 R.id.contacts_item -> makeCurrentFragment(ContactsFragment())
-                R.id.settings_item -> makeCurrentFragment(SettingsFragment())
+                R.id.info_item -> makeCurrentFragment(InfoFragment())
             }
             true
         }
@@ -40,12 +40,14 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         isDone: Boolean?,
         taskName: String?,
         startDate: String?,
-        dueDate: String?
+        dueDate: String?,
+        remindTime : String?
     ) {
         val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.child("taskName").setValue(taskName)
         itemReference.child("startDate").setValue(startDate)
         itemReference.child("dueDate").setValue(dueDate)
+        itemReference.child("remindTime").setValue(remindTime)
     }
 
     override fun onItemDelete(itemId: String?) {

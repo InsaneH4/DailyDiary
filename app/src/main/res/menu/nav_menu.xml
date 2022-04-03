@@ -9,7 +9,7 @@
         android:icon="@drawable/contacts_icon"
         android:title="@string/contacts" />
     <item
-        android:id="@+id/settings_item"
-        android:icon="@drawable/settings_icon"
-        android:title="@string/settings" />
+        android:id="@+id/info_item"
+        android:icon="@drawable/info_icon"
+        android:title="@string/info" />
 </menu>

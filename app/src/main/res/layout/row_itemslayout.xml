@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/task_bg"
     android:orientation="horizontal"
     android:paddingHorizontal="10dp"
@@ -13,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:buttonTint="@color/white" />
+        android:buttonTint="@color/textColor" />
 
     <TextView
         android:id="@+id/itemTextView"
@@ -22,7 +23,7 @@
 
         android:layout_toEndOf="@+id/taskCheckbox"
         android:text="@string/new_task"
-        android:textColor="@color/white"
+        android:textColor="@color/textColor"
         android:textSize="26sp"
         android:textStyle="bold"
         tools:ignore="RelativeOverlap" />
@@ -34,7 +35,7 @@
         android:layout_below="@+id/itemTextView"
         android:layout_toEndOf="@+id/taskCheckbox"
         android:text="@string/start_date"
-        android:textColor="@color/white"
+        android:textColor="@color/textColor"
         android:textSize="18sp"
         tools:ignore="RelativeOverlap" />
     <TextView
@@ -44,7 +45,17 @@
         android:layout_below="@+id/startTextView"
         android:layout_toEndOf="@+id/taskCheckbox"
         android:text="@string/due_date"
-        android:textColor="@color/white"
+        android:textColor="@color/textColor"
+        android:textSize="18sp"
+        tools:ignore="RelativeOverlap" />
+    <TextView
+        android:id="@+id/remindTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dueTextView"
+        android:layout_toEndOf="@+id/taskCheckbox"
+        android:text="@string/work_on_this_at"
+        android:textColor="@color/textColor"
         android:textSize="18sp"
         tools:ignore="RelativeOverlap" />
 
@@ -58,6 +69,7 @@
         android:contentDescription="@string/delete_a_task"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        app:tint="@color/textColor"
         android:src="@drawable/cancel_icon" />
 
     <ImageButton

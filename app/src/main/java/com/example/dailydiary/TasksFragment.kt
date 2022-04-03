@@ -53,16 +53,20 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             val nameField = EditText(this.context)
             val startField = EditText(this.context)
             val dueField = EditText(this.context)
+            val remindField = EditText(this.context)
             nameField.setSingleLine()
             startField.setSingleLine()
             dueField.setSingleLine()
+            remindField.setSingleLine()
             nameField.hint = "Name"
             startField.hint = "Start date"
             dueField.hint = "Due date"
+            remindField.hint = "Reminder time"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
             layout.addView(startField)
             layout.addView(dueField)
+            layout.addView(remindField)
             alertDialog.setView(layout)
             alertDialog.setPositiveButton("Add") { dialog, _ ->
                 val todoItemData = ToDoModel.createList()
@@ -100,12 +104,17 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                         todoItemData.dueDate = "Due date: " + dueField.text.toString()
                     }
                 }
+                if (remindField.text.isEmpty()) {
+                    todoItemData.remindTime = "No reminder set"
+                } else {
+                    todoItemData.remindTime = "Reminder set for: " + remindField.text.toString()
+                }
                 todoItemData.done = false
                 val newItemData = quesadilla.child("tasks").push()
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
-                Toast.makeText(this.context, "Task saved", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Task added", Toast.LENGTH_LONG).show()
             }
             alertDialog.setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
@@ -141,6 +150,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 toDoItemData.taskName = map["taskName"] as String?
                 toDoItemData.startDate = map["startDate"] as String?
                 toDoItemData.dueDate = map["dueDate"] as String?
+                toDoItemData.remindTime = map["remindTime"] as String?
                 toDoList.add(toDoItemData)
             }
         }
@@ -157,12 +167,14 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         isDone: Boolean?,
         taskName: String?,
         startDate: String?,
-        dueDate: String?
+        dueDate: String?,
+        remindTime: String?
     ) {
         val itemReference = quesadilla.child("tasks").child(itemId!!)
         itemReference.child("taskName").setValue(taskName)
         itemReference.child("startDate").setValue(startDate)
         itemReference.child("dueDate").setValue(dueDate)
+        itemReference.child("remindTime").setValue(remindTime)
     }
 
     override fun onItemDelete(itemId: String?) {

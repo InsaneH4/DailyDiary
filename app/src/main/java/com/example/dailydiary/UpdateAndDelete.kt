@@ -7,7 +7,8 @@ interface UpdateAndDelete {
         isDone: Boolean?,
         taskName: String?,
         startDate: String?,
-        dueDate: String?
+        dueDate: String?,
+        remindTime: String?
     )
 
     fun onItemDelete(itemId: String?)
