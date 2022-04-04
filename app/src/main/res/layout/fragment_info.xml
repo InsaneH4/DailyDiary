@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
@@ -7,10 +7,33 @@
     tools:context=".ContactsFragment">
 
     <TextView
+        android:id="@+id/TitleTextView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/info"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="4sp"
+        android:text="@string/daily_diary"
         android:textColor="@color/primary_color"
-        android:textSize="48sp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="64sp" />
+
+    <TextView
+        android:id="@+id/SubtitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TitleTextView"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="4sp"
+        android:text="@string/your_productivity_companion"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SubtitleTextView"
+        android:layout_marginStart="8sp"
+        android:layout_marginTop="8sp"
+        android:text="@string/app_description"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+</RelativeLayout>

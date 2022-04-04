@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="15dp"
-        android:backgroundTint="@color/primary_color"
+        android:backgroundTint="@color/secondary_color"
         android:contentDescription="@string/add_a_task"
         android:src="@drawable/add_icon"
         app:tint="@color/textColor" />
