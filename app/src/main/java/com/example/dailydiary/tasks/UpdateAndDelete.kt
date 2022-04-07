@@ -1,4 +1,4 @@
-package com.example.dailydiary
+package com.example.dailydiary.tasks
 
 interface UpdateAndDelete {
     fun modifyItem(itemId: String?, isDone: Boolean?)

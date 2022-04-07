@@ -1,4 +1,4 @@
-package com.example.dailydiary
+package com.example.dailydiary.tasks
 
 import android.app.AlertDialog
 import android.os.Build
@@ -12,6 +12,7 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.dailydiary.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import java.util.LinkedList
@@ -19,6 +20,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 //TODO: Figure out notifications
+//  Found out that MAKING NOTIFICATIONS SUCKS! (saving it for the end)
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
@@ -44,10 +46,10 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fab = view.findViewById<FloatingActionButton>(R.id.taskFab)
+        val taskFab = view.findViewById<FloatingActionButton>(R.id.taskFab)
         listViewItem = view.findViewById(R.id.taskListView)!!
         quesadilla = FirebaseDatabase.getInstance().reference
-        fab?.setOnClickListener {
+        taskFab?.setOnClickListener {
             val layout = LinearLayout(this.context)
             layout.orientation = LinearLayout.VERTICAL
             val alertDialog = AlertDialog.Builder(this.context)

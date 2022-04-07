@@ -1,8 +1,12 @@
-package com.example.dailydiary
+package com.example.dailydiary.other
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.dailydiary.R
+import com.example.dailydiary.contacts.ContactsFragment
+import com.example.dailydiary.tasks.TasksFragment
+import com.example.dailydiary.tasks.UpdateAndDelete
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,7 +27,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete {
         }
     }
 
-    private fun makeCurrentFragment(fragment: Fragment) {
+    fun makeCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
             commit()

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyDiary">
         <activity
-            android:name=".SplashActivity"
+            android:name=".other.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".other.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true"
             android:label="@string/appName"

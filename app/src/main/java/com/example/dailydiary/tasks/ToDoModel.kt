@@ -1,4 +1,4 @@
-package com.example.dailydiary
+package com.example.dailydiary.tasks
 
 class ToDoModel {
     companion object Factory {

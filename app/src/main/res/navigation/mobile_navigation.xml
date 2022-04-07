@@ -6,17 +6,22 @@
     app:startDestination="@id/tasksFragment">
     <fragment
         android:id="@+id/tasksFragment"
-        android:name="com.example.dailydiary.TasksFragment"
+        android:name="com.example.dailydiary.tasks.TasksFragment"
         android:label="Tasks"
         tools:layout="@layout/fragment_tasks" />
     <fragment
         android:id="@+id/contactsFragment"
-        android:name="com.example.dailydiary.ContactsFragment"
+        android:name="com.example.dailydiary.contacts.ContactsFragment"
         android:label="Contacts"
         tools:layout="@layout/fragment_contacts" />
     <fragment
         android:id="@+id/infoFragment"
-        android:name="com.example.dailydiary.InfoFragment"
+        android:name="com.example.dailydiary.other.InfoFragment"
         android:label="Info"
         tools:layout="@layout/fragment_info" />
+    <fragment
+        android:id="@+id/singleContactFragment"
+        android:name="com.example.dailydiary.contacts.SingleContactFragment"
+        android:label="Contact"
+        tools:layout="@layout/fragment_single_contact" />
 </navigation>

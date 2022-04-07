@@ -1,4 +1,4 @@
-package com.example.dailydiary
+package com.example.dailydiary.tasks
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.example.dailydiary.R
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
