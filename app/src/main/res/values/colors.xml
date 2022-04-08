@@ -11,4 +11,5 @@
     <color name="light_grey">#000000</color>
     <color name="white">#000000</color>
     <color name="textColor">#FFFFFF</color>
+    <color name="grey">#969696</color>
 </resources>

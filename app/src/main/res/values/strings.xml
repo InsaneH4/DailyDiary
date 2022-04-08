@@ -49,6 +49,16 @@
     <string name="work_on_this_at">Work on this at:</string>
     <string name="app_description">With daily diary you can:\n• Keep track of tasks/projects\n• Set reminders to work on things\n• Store contact information\n• Improve your productivity</string>
     <string name="add_a_contact">Add a contact</string>
-    <string name="in_progress">In progress</string>
+    <string name="new_contact">New contact</string>
     <string name="save">Save</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="title">Title</string>
+    <string name="birthday">Birthday</string>
+    <string name="address">Address</string>
+    <string name="email">Email address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="cancel">Cancel</string>
+    <string name="contact_photo">Contact photo</string>
+    <string name="select_image">Select image</string>
 </resources>
