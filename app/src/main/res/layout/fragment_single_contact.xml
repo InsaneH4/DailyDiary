@@ -1,152 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".contacts.SingleContactFragment">
+        tools:context=".contacts.SingleContactFragment"
+        android:paddingBottom="90dp">
 
-        <TextView
-            android:id="@+id/TitleText"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/new_contact"
-            android:textColor="@color/primary_color"
-            android:textSize="32sp" />
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/ContactPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/TitleText"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/contact_photo"
-            android:src="@drawable/default_photo" />
+            <TextView
+                android:id="@+id/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/new_contact"
+                android:textColor="@color/primary_color"
+                android:textSize="32sp" />
 
-        <Button
-            android:id="@+id/ChooseImageBtn"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/ContactPhoto"
-            android:layout_centerHorizontal="true"
-            android:text="@string/select_image"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="18sp" />
+            <ImageView
+                android:id="@+id/ContactPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TitleText"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/contact_photo"
+                android:src="@drawable/default_photo" />
 
-        <EditText
-            android:id="@+id/FirstNameField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/ChooseImageBtn"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/first_name"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <Button
+                android:id="@+id/ChooseImageBtn"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/ContactPhoto"
+                android:layout_centerHorizontal="true"
+                android:text="@string/select_image"
+                android:textAllCaps="false"
+                android:textColor="@color/textColor"
+                android:textSize="18sp" />
 
-        <EditText
-            android:id="@+id/LastNameField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/FirstNameField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/last_name"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/FirstNameField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/ChooseImageBtn"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/first_name"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/TitleField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/LastNameField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/title"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/LastNameField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/FirstNameField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/last_name"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/BdayField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/TitleField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/birthday"
-            android:importantForAutofill="no"
-            android:inputType="date"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/TitleField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/LastNameField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/title"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/AddressField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/BdayField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/address"
-            android:importantForAutofill="no"
-            android:inputType="textPostalAddress"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/BdayField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/TitleField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/birthday"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/EmailField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/AddressField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/email"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/AddressField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/BdayField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/address"
+                android:importantForAutofill="no"
+                android:inputType="textPostalAddress"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <EditText
-            android:id="@+id/PhoneField"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_below="@+id/EmailField"
-            android:layout_marginHorizontal="16dp"
-            android:hint="@string/phone_number"
-            android:importantForAutofill="no"
-            android:inputType="phone"
-            android:singleLine="true"
-            android:textColor="@color/white" />
+            <EditText
+                android:id="@+id/EmailField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/AddressField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/SaveButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_below="@+id/PhoneField"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="16dp"
-            android:text="@string/save"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="18sp" />
+            <EditText
+                android:id="@+id/PhoneField"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/EmailField"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/phone_number"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </ScrollView>
 
-        <Button
-            android:id="@+id/CancelButton"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/grey"
-            android:text="@string/cancel"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@color/textColor"
-            android:textSize="18sp" />
-    </RelativeLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:text="@string/save"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/CancelButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/grey"
+        android:text="@string/cancel"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/textColor"
+        android:textSize="18sp" />
+</RelativeLayout>

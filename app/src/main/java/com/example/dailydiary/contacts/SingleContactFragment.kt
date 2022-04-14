@@ -1,7 +1,11 @@
 package com.example.dailydiary.contacts
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -12,13 +16,33 @@ import androidx.fragment.app.Fragment
 import com.example.dailydiary.R
 import com.example.dailydiary.other.MainActivity
 import kotlinx.android.synthetic.main.fragment_single_contact.*
+import java.io.FileNotFoundException
+import java.io.IOException
 
 class SingleContactFragment : Fragment() {
+    private fun getBitmap(file: Uri, cr: ContentResolver): Bitmap? {
+        var bitmap: Bitmap? = null
+        try {
+            val inputStream = cr.openInputStream(file)
+            bitmap = BitmapFactory.decodeStream(inputStream)
+            try {
+                inputStream?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        } catch (e: FileNotFoundException) {
+        }
+        return bitmap
+    }
+
     private val getResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == Activity.RESULT_OK) {
-            ContactPhoto.setImageURI(it.data?.data)
+            val bitmap = getBitmap(it.data!!.data!!, this.requireContext().contentResolver)!!
+            val resized = Bitmap.createScaledBitmap(bitmap, 600, 600, true)
+            ContactPhoto.setImageBitmap(resized)
         }
     }
 
