@@ -9,7 +9,8 @@ interface UpdateAndDeleteContact {
         birthday: String?,
         address: String?,
         email: String?,
-        phone: String?
+        phone: String?,
+        notes: String?
     )
 
     fun onContactDelete(itemId: String?)

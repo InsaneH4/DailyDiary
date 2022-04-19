@@ -79,7 +79,8 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete, UpdateAndDeleteContac
         birthday: String?,
         address: String?,
         email: String?,
-        phone: String?
+        phone: String?,
+        notes: String?
     ) {
         val secondary = Firebase.app("secondary")
         val secondaryDatabase = Firebase.database(secondary)
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete, UpdateAndDeleteContac
         itemReference.child("address").setValue(address)
         itemReference.child("email").setValue(email)
         itemReference.child("phone").setValue(phone)
+        itemReference.child("notes").setValue(notes)
     }
 
     override fun onContactDelete(itemId: String?) {

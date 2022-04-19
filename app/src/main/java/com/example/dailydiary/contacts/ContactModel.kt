@@ -13,4 +13,5 @@ class ContactModel{
     var address: String? = null
     var email: String? = null
     var phone: String? = null
+    var notes: String? = null
 }

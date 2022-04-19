@@ -49,6 +49,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
             val addressField = EditText(view.context)
             val emailField = EditText(view.context)
             val phoneField = EditText(view.context)
+            val notesField = EditText(view.context)
             val scroll = ScrollView(view.context)
             firstNameField.isSingleLine = true
             lastNameField.isSingleLine = true
@@ -64,6 +65,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
             addressField.hint = "Home address"
             emailField.hint = "Email address"
             phoneField.hint = "Phone number"
+            notesField.hint = "Notes"
             alertDialog.setTitle("Create new contact")
             layout.addView(firstNameField)
             layout.addView(lastNameField)
@@ -72,6 +74,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
             layout.addView(addressField)
             layout.addView(emailField)
             layout.addView(phoneField)
+            layout.addView(notesField)
             scroll.addView(layout)
             alertDialog.setView(scroll)
             alertDialog.setPositiveButton("Save") { dialog, _ ->
@@ -110,6 +113,11 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
                     contactData.phone = "No phone # set"
                 } else {
                     contactData.phone = phoneField.text.toString()
+                }
+                if (notesField.text.isEmpty()) {
+                    contactData.notes = "No notes set"
+                } else {
+                    contactData.notes = notesField.text.toString()
                 }
                 val newItemData = database.child("contacts").push()
                 contactData.contactId = newItemData.key
@@ -154,6 +162,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
                 contactData.address = map["address"] as String?
                 contactData.email = map["email"] as String?
                 contactData.phone = map["phone"] as String?
+                contactData.notes = map["notes"] as String?
                 contactList.add(contactData)
             }
         }
@@ -168,7 +177,8 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
         birthday: String?,
         address: String?,
         email: String?,
-        phone: String?
+        phone: String?,
+        notes: String?
     ) {
         val secondary = Firebase.app("secondary")
         val secondaryDatabase = Firebase.database(secondary)
@@ -181,6 +191,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
         itemReference.child("address").setValue(address)
         itemReference.child("email").setValue(email)
         itemReference.child("phone").setValue(phone)
+        itemReference.child("notes").setValue(notes)
     }
 
     override fun onContactDelete(itemId: String?) {

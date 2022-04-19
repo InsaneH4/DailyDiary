@@ -39,6 +39,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
         var address: String? = contactList[p0].address
         var email: String? = contactList[p0].email
         var phone: String? = contactList[p0].phone
+        var notes: String? = contactList[p0].notes
         val view: View
         val viewHolder: ListViewHolder
         if (p1 == null) {
@@ -67,7 +68,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             val addressField = EditText(view.context)
             val emailField = EditText(view.context)
             val phoneField = EditText(view.context)
-
+            val notesField = EditText(view.context)
             val scroll = ScrollView(view.context)
             firstNameField.isSingleLine = true
             lastNameField.isSingleLine = true
@@ -83,6 +84,8 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             addressField.inputType = 0
             emailField.inputType = 0
             phoneField.inputType = 0
+            notesField.isClickable = false
+            notesField.isFocusable = false
             firstNameField.setText(firstName)
             lastNameField.setText(lastName)
             titleField.setText(title)
@@ -90,6 +93,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             addressField.setText(address)
             emailField.setText(email)
             phoneField.setText(phone)
+            notesField.setText(notes)
             alertDialog.setTitle("View this contact")
             layout.addView(firstNameField)
             layout.addView(lastNameField)
@@ -98,6 +102,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             layout.addView(addressField)
             layout.addView(emailField)
             layout.addView(phoneField)
+            layout.addView(notesField)
             scroll.addView(layout)
             alertDialog.setView(scroll)
             alertDialog.setPositiveButton("Back") { dialog, _ ->
@@ -117,6 +122,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             val addressField = EditText(view.context)
             val emailField = EditText(view.context)
             val phoneField = EditText(view.context)
+            val notesField = EditText(view.context)
             val scroll = ScrollView(view.context)
             firstNameField.isSingleLine = true
             lastNameField.isSingleLine = true
@@ -139,6 +145,8 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             emailField.hint = "Email address"
             phoneField.setText(phone)
             phoneField.hint = "Phone number"
+            notesField.hint = "Notes"
+            notesField.setText(notes)
             alertDialog.setTitle("Edit this contact")
             layout.addView(firstNameField)
             layout.addView(lastNameField)
@@ -147,6 +155,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             layout.addView(addressField)
             layout.addView(emailField)
             layout.addView(phoneField)
+            layout.addView(notesField)
             scroll.addView(layout)
             alertDialog.setView(scroll)
             alertDialog.setPositiveButton("Save") { dialog, _ ->
@@ -157,6 +166,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
                 address = addressField.text.toString()
                 email = emailField.text.toString()
                 phone = phoneField.text.toString()
+                notes = notesField.text.toString()
                 updateAndDelete.editContact(
                     id,
                     firstName,
@@ -165,7 +175,8 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
                     birthday,
                     address,
                     email,
-                    phone
+                    phone,
+                    notes
                 )
                 dialog.dismiss()
                 Toast.makeText(view.context, "Contact saved", Toast.LENGTH_LONG).show()
