@@ -19,9 +19,4 @@
         android:name="com.example.dailydiary.other.InfoFragment"
         android:label="Info"
         tools:layout="@layout/fragment_info" />
-    <fragment
-        android:id="@+id/singleContactFragment"
-        android:name="com.example.dailydiary.contacts.SingleContactFragment"
-        android:label="Contact"
-        tools:layout="@layout/fragment_single_contact" />
 </navigation>

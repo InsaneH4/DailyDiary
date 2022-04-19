@@ -19,8 +19,6 @@ import java.util.LinkedList
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-//TODO: Figure out notifications
-//  Found out that MAKING NOTIFICATIONS SUCKS! (saving it for the end)
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
@@ -31,7 +29,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     private val tomorrow = LocalDateTime.now().plusDays(1).format(dateFormatter)
     private lateinit var toDoList: LinkedList<ToDoModel>
-    private lateinit var quesadilla: DatabaseReference
+    private lateinit var database: DatabaseReference
     private lateinit var adapter: ToDoAdapter
     private lateinit var listViewItem: ListView
 
@@ -48,7 +46,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         super.onViewCreated(view, savedInstanceState)
         val taskFab = view.findViewById<FloatingActionButton>(R.id.taskFab)
         listViewItem = view.findViewById(R.id.taskListView)!!
-        quesadilla = FirebaseDatabase.getInstance().reference
+        database = FirebaseDatabase.getInstance().reference
         taskFab?.setOnClickListener {
             val layout = LinearLayout(this.context)
             layout.orientation = LinearLayout.VERTICAL
@@ -113,7 +111,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                     todoItemData.remindTime = "Reminder set for: " + remindField.text.toString()
                 }
                 todoItemData.done = false
-                val newItemData = quesadilla.child("tasks").push()
+                val newItemData = database.child("tasks").push()
                 todoItemData.id = newItemData.key
                 newItemData.setValue(todoItemData)
                 dialog.dismiss()
@@ -127,7 +125,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         toDoList = LinkedList()
         adapter = ToDoAdapter(context, toDoList)
         listViewItem.adapter = adapter
-        quesadilla.addValueEventListener(object : ValueEventListener {
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoList.clear()
                 addItemToList(snapshot)
@@ -161,7 +159,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     }
 
     override fun modifyItem(itemId: String?, isDone: Boolean?) {
-        val itemReference = quesadilla.child("tasks").child(itemId!!)
+        val itemReference = database.child("tasks").child(itemId!!)
         itemReference.child("done").setValue(isDone)
     }
 
@@ -173,7 +171,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
         dueDate: String?,
         remindTime: String?
     ) {
-        val itemReference = quesadilla.child("tasks").child(itemId!!)
+        val itemReference = database.child("tasks").child(itemId!!)
         itemReference.child("taskName").setValue(taskName)
         itemReference.child("startDate").setValue(startDate)
         itemReference.child("dueDate").setValue(dueDate)
@@ -181,7 +179,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     }
 
     override fun onItemDelete(itemId: String?) {
-        val itemReference = quesadilla.child("tasks").child(itemId!!)
+        val itemReference = database.child("tasks").child(itemId!!)
         itemReference.removeValue()
         adapter.notifyDataSetChanged()
     }

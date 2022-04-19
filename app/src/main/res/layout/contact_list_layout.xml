@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listContactView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/task_bg"
+    android:orientation="horizontal"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp">
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/name"
+        android:textColor="@color/textColor"
+        android:textSize="32sp" />
+
+    <ImageButton
+        android:id="@+id/contactView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/contactEdit"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/view_this_contact"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/view_icon" />
+
+    <ImageButton
+        android:id="@+id/contactEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/edit_a_contact"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/edit_icon" />
+</RelativeLayout>
