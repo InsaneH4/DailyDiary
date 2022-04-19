@@ -12,11 +12,13 @@ import androidx.fragment.app.Fragment
 import com.example.dailydiary.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
 import java.util.*
 
 class ContactsFragment : Fragment(), UpdateAndDeleteContact {
     private lateinit var contactList: LinkedList<ContactModel>
-    private lateinit var database: DatabaseReference
     private lateinit var adapter: ContactsAdapter
     private lateinit var listViewItem: ListView
 
@@ -31,9 +33,11 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val secondary = Firebase.app("secondary")
+        val secondaryDatabase = Firebase.database(secondary)
+        val database = secondaryDatabase.reference
         val contactsFab = view.findViewById<FloatingActionButton>(R.id.contactsFab)
         listViewItem = view.findViewById(R.id.contactsListView)!!
-        database = FirebaseDatabase.getInstance().reference
         contactsFab?.setOnClickListener {
             val alertDialog = AlertDialog.Builder(view.context)
             val layout = LinearLayout(view.context)
@@ -78,32 +82,32 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
                     contactData.firstName = firstNameField.text.toString()
                 }
                 if (lastNameField.text.isEmpty()) {
-                    contactData.lastName = ""
+                    contactData.lastName = "N/A"
                 } else {
                     contactData.lastName = lastNameField.text.toString()
                 }
                 if (titleField.text.isEmpty()) {
-                    contactData.title = ""
+                    contactData.title = "No title set"
                 } else {
                     contactData.title = titleField.text.toString()
                 }
                 if (bdayField.text.isEmpty()) {
-                    contactData.birthday = ""
+                    contactData.birthday = "No birthday set"
                 } else {
                     contactData.birthday = bdayField.text.toString()
                 }
                 if (addressField.text.isEmpty()) {
-                    contactData.address = ""
+                    contactData.address = "No address set"
                 } else {
                     contactData.address = addressField.text.toString()
                 }
                 if (emailField.text.isEmpty()) {
-                    contactData.email = ""
+                    contactData.email = "No email set"
                 } else {
                     contactData.email = emailField.text.toString()
                 }
                 if (phoneField.text.isEmpty()) {
-                    contactData.phone = ""
+                    contactData.phone = "No phone # set"
                 } else {
                     contactData.phone = phoneField.text.toString()
                 }
@@ -128,7 +132,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, "No contact added", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Database error", Toast.LENGTH_LONG).show()
             }
         })
     }
@@ -166,6 +170,9 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
         email: String?,
         phone: String?
     ) {
+        val secondary = Firebase.app("secondary")
+        val secondaryDatabase = Firebase.database(secondary)
+        val database = secondaryDatabase.reference
         val itemReference = database.child("contacts").child(itemId!!)
         itemReference.child("firstName").setValue(firstName)
         itemReference.child("lastName").setValue(lastName)
@@ -177,6 +184,9 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
     }
 
     override fun onContactDelete(itemId: String?) {
+        val secondary = Firebase.app("secondary")
+        val secondaryDatabase = Firebase.database(secondary)
+        val database = secondaryDatabase.reference
         val itemReference = database.child("contacts").child(itemId!!)
         itemReference.removeValue()
         adapter.notifyDataSetChanged()

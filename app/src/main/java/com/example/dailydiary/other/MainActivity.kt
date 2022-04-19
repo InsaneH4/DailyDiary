@@ -8,15 +8,26 @@ import com.example.dailydiary.contacts.ContactsFragment
 import com.example.dailydiary.contacts.UpdateAndDeleteContact
 import com.example.dailydiary.tasks.TasksFragment
 import com.example.dailydiary.tasks.UpdateAndDelete
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.app
+import com.google.firebase.ktx.initialize
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity(), UpdateAndDelete, UpdateAndDeleteContact {
+    private val url = "https://dailydiarycontacts-default-rtdb.firebaseio.com/"
     private val database = FirebaseDatabase.getInstance().reference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val options =
+            FirebaseOptions.Builder().setProjectId("dailydiarycontacts")
+                .setApplicationId("1:947123898210:android:8a5478577877af5efa4e3b")
+                .setDatabaseUrl(url).build()
+        Firebase.initialize(this, options, "secondary")
         makeCurrentFragment(TasksFragment())
         bottom_navigation.setOnItemSelectedListener {
             when (it.itemId) {
@@ -70,6 +81,9 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete, UpdateAndDeleteContac
         email: String?,
         phone: String?
     ) {
+        val secondary = Firebase.app("secondary")
+        val secondaryDatabase = Firebase.database(secondary)
+        val database = secondaryDatabase.reference
         val itemReference = database.child("contacts").child(itemId!!)
         itemReference.child("firstName").setValue(firstName)
         itemReference.child("lastName").setValue(lastName)
@@ -81,6 +95,9 @@ class MainActivity : AppCompatActivity(), UpdateAndDelete, UpdateAndDeleteContac
     }
 
     override fun onContactDelete(itemId: String?) {
+        val secondary = Firebase.app("secondary")
+        val secondaryDatabase = Firebase.database(secondary)
+        val database = secondaryDatabase.reference
         val itemReference = database.child("contacts").child(itemId!!)
         itemReference.removeValue()
     }
