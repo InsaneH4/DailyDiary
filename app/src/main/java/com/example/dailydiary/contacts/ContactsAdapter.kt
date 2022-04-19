@@ -1,5 +1,6 @@
 package com.example.dailydiary.contacts
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
@@ -27,6 +28,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
         return p0.toLong()
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
         val id: String? = contactList[p0].contactId
@@ -47,8 +49,13 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             view = p1
             viewHolder = view.tag as ListViewHolder
         }
-        val nameText = "$firstName $lastName"
-        viewHolder.nameLabel.text = nameText
+        if (lastName == "No last name set") {
+            val nameText = "$firstName"
+            viewHolder.nameLabel.text = nameText
+        } else {
+            val nameText = "$firstName $lastName"
+            viewHolder.nameLabel.text = nameText
+        }
         viewHolder.viewButton.setOnClickListener {
             val alertDialog = AlertDialog.Builder(view.context)
             val layout = LinearLayout(view.context)
@@ -60,6 +67,7 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
             val addressField = EditText(view.context)
             val emailField = EditText(view.context)
             val phoneField = EditText(view.context)
+
             val scroll = ScrollView(view.context)
             firstNameField.isSingleLine = true
             lastNameField.isSingleLine = true
@@ -162,10 +170,13 @@ class ContactsAdapter(context: Context?, contactsList: LinkedList<ContactModel>)
                 dialog.dismiss()
                 Toast.makeText(view.context, "Contact saved", Toast.LENGTH_LONG).show()
             }
-            alertDialog.setNegativeButton("Delete") { dialog, _ ->
+            alertDialog.setNeutralButton("Delete") { dialog, _ ->
                 updateAndDelete.onContactDelete(id)
                 dialog.dismiss()
                 Toast.makeText(view.context, "Contact deleted", Toast.LENGTH_LONG).show()
+            }
+            alertDialog.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
             }
             alertDialog.show()
         }

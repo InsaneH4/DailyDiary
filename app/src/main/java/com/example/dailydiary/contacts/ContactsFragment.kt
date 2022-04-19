@@ -82,7 +82,7 @@ class ContactsFragment : Fragment(), UpdateAndDeleteContact {
                     contactData.firstName = firstNameField.text.toString()
                 }
                 if (lastNameField.text.isEmpty()) {
-                    contactData.lastName = "N/A"
+                    contactData.lastName = "No last name set"
                 } else {
                     contactData.lastName = lastNameField.text.toString()
                 }
