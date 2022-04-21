@@ -1,6 +1,10 @@
 package com.example.dailydiary.tasks
 
-import android.app.AlertDialog
+import android.annotation.SuppressLint
+import android.app.*
+import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,13 +19,17 @@ import androidx.fragment.app.Fragment
 import com.example.dailydiary.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
-import java.util.LinkedList
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
-    private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
+    private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yy")
+
+    @SuppressLint("SimpleDateFormat")
+    private val dateTimeFormat = SimpleDateFormat("M/d/yy H:m aa")
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val date = LocalDateTime.now().format(dateFormatter)
@@ -44,6 +52,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        createNotificationChannel()
         val taskFab = view.findViewById<FloatingActionButton>(R.id.taskFab)
         listViewItem = view.findViewById(R.id.taskListView)!!
         database = FirebaseDatabase.getInstance().reference
@@ -62,7 +71,7 @@ class TasksFragment : Fragment(), UpdateAndDelete {
             nameField.hint = "Name"
             startField.hint = "Start date"
             dueField.hint = "Due date"
-            remindField.hint = "Reminder time"
+            remindField.hint = "Reminder"
             alertDialog.setTitle("Add a task")
             layout.addView(nameField)
             layout.addView(startField)
@@ -108,7 +117,12 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 if (remindField.text.isEmpty()) {
                     todoItemData.remindTime = "No reminder set"
                 } else {
-                    todoItemData.remindTime = "Reminder set for: " + remindField.text.toString()
+                    todoItemData.remindTime = remindField.text.toString()
+                    val remindAt = dateTimeFormat.parse(remindField.text.toString())
+                    scheduleNotification(
+                        remindAt!!.time, "Work on " + nameField.text.toString(),
+                        alertDialog.context
+                    )
                 }
                 todoItemData.done = false
                 val newItemData = database.child("tasks").push()
@@ -135,6 +149,33 @@ class TasksFragment : Fragment(), UpdateAndDelete {
                 Toast.makeText(context, "No item added", Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    @Suppress("SameParameterValue")
+    fun scheduleNotification(time: Long, message: String, context: Context) {
+        val intent = Intent(context, Notification::class.java)
+        intent.putExtra(messageExtra, message)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun createNotificationChannel() {
+        val name = "Notif Channel"
+        val desc = "A description of the channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelId, name, importance)
+        channel.description = desc
+        val notificationManager =
+            requireContext().getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     private fun addItemToList(snapshot: DataSnapshot) {

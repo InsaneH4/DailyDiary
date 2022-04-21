@@ -1,5 +1,6 @@
 package com.example.dailydiary.tasks
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.media.MediaPlayer
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import com.example.dailydiary.R
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -18,7 +20,10 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy")
+    private val dateFormatter = DateTimeFormatter.ofPattern("M/d/yy")
+
+    @SuppressLint("SimpleDateFormat")
+    private val dateTimeFormat = SimpleDateFormat("M/d/yy H:m aa")
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val date = LocalDateTime.now().format(dateFormatter)
@@ -121,6 +126,13 @@ class ToDoAdapter(context: Context?, toDoList: LinkedList<ToDoModel>) : BaseAdap
                     }
                 }
                 remindTime = remindField.text.toString()
+                if (remindTime != "No reminder set") {
+                    val remindAt = dateTimeFormat.parse(remindTime!!)
+                    TasksFragment().scheduleNotification(
+                        remindAt!!.time, "Work on " + nameField.text.toString(),
+                        alertDialog.context
+                    )
+                }
                 updateAndDelete.editItem(id, done, taskName, startDate, dueDate, remindTime)
                 dialog.dismiss()
                 Toast.makeText(view.context, "Task saved", Toast.LENGTH_LONG).show()
