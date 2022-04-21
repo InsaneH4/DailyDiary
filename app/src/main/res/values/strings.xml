@@ -47,7 +47,7 @@
     <string name="choose_a_time">Choose a time</string>
     <string name="info">Info</string>
     <string name="work_on_this_at">Work on this at:</string>
-    <string name="app_description">With daily diary you can:\n• Keep track of tasks/projects\n• Set reminders to work on things\n• Store contact information\n• Improve your productivity\n\nCreated by Sam Hussain</string>
+    <string name="app_description">With daily diary you can:\n• Keep track of tasks/projects\n• Set reminders to work on things\n• Store and view contact info\n• Improve your productivity\n\nCreated by Sam Hussain</string>
     <string name="add_a_contact">Add a contact</string>
     <string name="new_contact">New contact</string>
     <string name="save">Save</string>
